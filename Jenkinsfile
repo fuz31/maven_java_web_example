@@ -61,7 +61,9 @@ pipeline {
                 stage('Selenium tests'){
                     stages{
                         stage('Checking out selenium code'){
-                            checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/fuz31/automated-functional-tests.git']]])
+                            steps{
+                                checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/fuz31/automated-functional-tests.git']]])
+                            }
                         }
 
                         stage('Execute selenium code'){
@@ -74,16 +76,6 @@ pipeline {
                         }
                     }
                 }  
-                    // post {
-                    //     failure {
-                    //         script {
-        		    //         RUN_SECURITY_SCAN_STATUS= 'Failed'
-                    //             sh '''
-                    //             curl -XPOST -H "Authorization: token $GITHUB_TOKEN" $GITHUB_API_URL/repos/$REPO_OWNER_NAME/$REPO_NAME/$(git rev-parse HEAD) -d "{'state': 'failure','context':'ci/jenkins: run-sonarqube', 'target_url': JENKINS_URL,'description': 'Your tests failed on Jenkins!'}"
-                    //             '''				       
-        	   	    //             sh 'echo "FAILED in stage SonarQube"'
-    		        //         }
-                    //     }
-                    // }	
+	
     }   
 }
