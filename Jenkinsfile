@@ -69,8 +69,10 @@ pipeline {
                         stage('Execute selenium code'){
                             steps{
                                 sh 'ls'
+                                script{
                                 nodejs('Node14') {
                                     npm version
+                                }
                             }
                         }
                         }
