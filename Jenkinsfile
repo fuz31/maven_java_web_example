@@ -70,7 +70,6 @@ pipeline {
                             steps{
                                 sh 'ls'
                                 nodejs('Node14') {
-                                    npm install
                                     npm version
                             }
                         }
