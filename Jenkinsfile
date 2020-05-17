@@ -19,10 +19,6 @@ pipeline {
             steps {
                 script {
                     sh 'mvn clean compile verify'
-                    sh '''
-                     curl -XPOST -H "Authorization: token $GITHUB_TOKEN" $GITHUB_API_URL/repos/$REPO_OWNER_NAME/$REPO_NAME/statuses/$(git rev-parse HEAD) -d "{'state': 'success','context':'ci/jenkins: checkout-code', 'target_url': $JENKINS_URL,'description': 'Your tests passed on Jenkins!'}"
-                    '''			
-  		            CHECKOUT_STATUS= 'Success'
                 }
 
                
