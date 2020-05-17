@@ -40,7 +40,7 @@ pipeline {
                             sh 'mkdir sonarqubereports'
                             sh 'sleep 5'
                             sh 'wget https://github.com/lequal/sonar-cnes-report/releases/download/3.1.0/sonar-cnes-report-3.1.0.jar'
-                            sh 'java -jar ./sonar-cnes-report-3.1.0.jar -t 6aa233343af2b084373d93391e501de4059bf1b -s http://3.221.118.166 -p Cynerge-Demo -o sonarqubereports'
+                            sh 'java -jar ./sonar-cnes-report-3.1.0.jar -t 8f1b7aace3c4980743fac4682947df2f28be34be -s http://3.221.118.166 -p Cynerge-Demo -o sonarqubereports'
                             sh 'cp sonarqubereports/*-BossAPI-analysis-report.docx sonarqubereports/sonarqubeanalysisreport.docx'
                             sh 'cp sonarqubereports/*-BossAPI-issues-report.xlsx sonarqubereports/sonarqubeissuesreport.xlsx'
                                 archiveArtifacts artifacts: 'sonarqubereports/sonarqubeanalysisreport.docx', fingerprint: true
