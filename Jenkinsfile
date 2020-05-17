@@ -13,7 +13,7 @@ pipeline {
             }
 
             
-        }
+        }   
 
         stage('Build Application'){
             steps {
@@ -45,6 +45,8 @@ pipeline {
                             sh 'cp sonarqubereports/*-Cynerge-Demo-issues-report.xlsx sonarqubereports/sonarqubeissuesreport.xlsx'
                                 archiveArtifacts artifacts: 'sonarqubereports/sonarqubeanalysisreport.docx', fingerprint: true
                                 archiveArtifacts artifacts: 'sonarqubereports/sonarqubeissuesreport.xlsx', fingerprint: true
+			    
+
 
                                 // timeout(time: 2, unit: 'MINUTES') {
                                 //         waitForQualityGate abortPipeline: false
@@ -54,6 +56,24 @@ pipeline {
                             }
                         }
                     }
+
+
+                stage('Selenium tests'){
+                    stages{
+                        stage('Checking out selenium code'){
+                            checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/fuz31/automated-functional-tests.git']]])
+                        }
+
+                        stage('Execute selenium code'){
+                            steps{
+                                sh 'ls'
+                                nodejs('Node14') {
+                                    npm verison
+                            }
+                        }
+                        }
+                    }
+                }  
                     // post {
                     //     failure {
                     //         script {
