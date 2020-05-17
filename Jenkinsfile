@@ -32,10 +32,6 @@ pipeline {
                     steps {
                         script {
                             
-                            mvn sonar:sonar \
-                            -Dsonar.projectKey=Cynerge-Demo \
-                            -Dsonar.host.url=http://3.221.118.166 \
-                            -Dsonar.login=6aa233343af2b084373d93391e501de4059bf1b
 
                             def scannerhome = tool 'SonarQubeScanner';
                             withSonarQubeEnv('SonarQube') {      
