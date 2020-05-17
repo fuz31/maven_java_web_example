@@ -35,13 +35,14 @@ pipeline {
 
                             def scannerhome = tool 'cynerge-sonarqube';
                             withSonarQubeEnv() {      
-                            sh 'mvn sonar:sonar -Dsonar.projectKey=Cynerge-Demo -Dsonar.host.url=http://3.221.118.166 -Dsonar.login=8f1b7aace3c4980743fac4682947df2f28be34be'
+                            sh 'mvn sonar:sonar -Dsonar.projectName=Cynerge-Demo -Dsonar.projectKey=Cynerge-Demo -Dsonar.host.url=http://3.221.118.166 -Dsonar.login=8f1b7aace3c4980743fac4682947df2f28be34be'
                             sh 'rm -rf sonarqubereports  || echo "directory does not exist"'
                             sh 'mkdir sonarqubereports'
                             sh 'sleep 5'
                             sh 'wget https://github.com/lequal/sonar-cnes-report/releases/download/3.1.0/sonar-cnes-report-3.1.0.jar'
                             sh 'java -jar ./sonar-cnes-report-3.1.0.jar -t 8f1b7aace3c4980743fac4682947df2f28be34be -s http://3.221.118.166 -p Cynerge-Demo -o sonarqubereports'
                             sh '''
+
                             ls sonarqubereports
                             '''
                             sh 'cp sonarqubereports/*-BossAPI-analysis-report.docx sonarqubereports/sonarqubeanalysisreport.docx'
