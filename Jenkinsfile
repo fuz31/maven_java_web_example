@@ -5,14 +5,6 @@ pipeline {
         }
     }  
 
-    
-
-    options {      
-        timestamps()
-        disableConcurrentBuilds()
-        ansiColor('xterm')
-        buildDiscarder(logRotator(numToKeepStr: '3'))
-    }  
 
     stages {     
         stage('Checkout from SCM'){
