@@ -33,7 +33,7 @@ pipeline {
                         script {
                             
 
-                            def scannerhome = tool 'SonarQubeScanner';
+                            def scannerhome = tool 'cynerge-sonarqube';
                             withSonarQubeEnv('SonarQube') {      
                             sh 'mvn sonar:sonar -Dsonar.projectKey=Cynerge-Demo -Dsonar.host.url=http://3.221.118.166 -Dsonar.login=6aa233343af2b084373d93391e501de4059bf1b'
                             sh 'rm -rf sonarqubereports  || echo "directory does not exist"'
