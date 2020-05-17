@@ -56,7 +56,7 @@ pipeline {
                             }
                         }
                     }
-
+                }
 
                 stage('Selenium tests'){
                     stages{
